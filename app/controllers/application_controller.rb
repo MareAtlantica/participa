@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+  
   ensure_security_headers
 
   # Prevent CSRF attacks by raising an exception.
@@ -109,7 +110,7 @@ class ApplicationController < ActionController::Base
   end
 
   def authenticate_admin_user!
-    unless signed_in? && (current_user.is_admin? || current_user.microcredits_admin?)
+    unless signed_in? && (current_user.is_admin? || current_user.microcredits_admin? || current_user.impulsa_admin?)
       redirect_to root_url, flash: { error: t('podemos.unauthorized') }
     end
   end 
